@@ -50,7 +50,7 @@ function Footer() {
 
       <div className={styles.footnote}>
         <p className={styles.studios}>
-          We are studio available in area Sinhagad Road | Deccan | Hadapsar | Wanwaorie | Lulla Nagar | Moshi PCMC
+          We Are studio available in area Sinhagad Road | Deccan | Hadapsar | Wanwaorie | Lulla Nagar | Moshi PCMC
         </p>
         <p className={styles.credit}>Designed and Developed by <a href="#" className={styles.creditLink}>Harish Salunke</a></p>
       </div>
