@@ -1,0 +1,119 @@
+:root {
+  --color-black: #0d0d0d;
+  --color-dark-gray: #1a1a1a;
+  --color-white: #f0f0f0;
+  --color-orange: #ff6600;
+  --color-orange-light: #ff8800;
+  --color-orange-dark: #cc5200;
+  --color-muted: #cbd5e1;
+  --shadow-strong: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+
+/* Root Section Container */
+.root {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4vw;
+  align-items: center;
+  max-width: 1200px;
+  margin: 48px auto;
+  padding: 32px;
+  background: var(--color-black);
+  border-radius: 16px;
+  box-shadow: var(--shadow-strong);
+}
+
+/* Image Wrapper */
+.imageWrap {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Collage Style (3 slices) */
+.collage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  height: 100%;
+  min-height: 320px;
+}
+
+.slice {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.slice:hover .image {
+  transform: scale(1.05);
+}
+
+/* Text Content */
+.title {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  margin: 0 0 12px 0;
+  color: var(--color-orange);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.text {
+  color: var(--color-white);
+  opacity: 0.85;
+  line-height: 1.7;
+  margin: 0 0 20px 0;
+}
+
+/* CTA Button — Orange Variant */
+.cta {
+  color: var(--color-white);
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--color-orange), var(--color-orange-dark));
+  box-shadow: 0 6px 14px rgba(255, 102, 0, 0.35);
+  transition: all 150ms ease;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+
+.cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(255, 102, 0, 0.5);
+  background: linear-gradient(180deg, var(--color-orange-light), var(--color-orange));
+  color: var(--color-white);
+}
+
+.cta:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 12px rgba(255, 102, 0, 0.35);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-orange-light);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  .root {
+    grid-template-columns: 1fr;
+    margin: 28px auto;
+    gap: 24px;
+    padding: 24px;
+  }
+  .collage {
+    min-height: 220px;
+  }
+}

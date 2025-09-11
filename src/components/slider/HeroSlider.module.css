@@ -1,0 +1,215 @@
+:root {
+  --color-black: #0d0d0d;
+  --color-dark-gray: #0b0f1d;
+  --color-white: #f0f0f0;
+  --color-orange: #ff6600;
+  --color-orange-light: #ff8800;
+  --color-orange-dark: #cc5200;
+  --muted-overlay: rgba(0,0,0,0.45);
+}
+
+/* Slider Root */
+.sliderRoot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  border-radius: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--color-dark-gray), rgba(6,7,10,0.6));
+  color: var(--color-white);
+}
+
+/* Track & Slides */
+.track {
+  display: flex;
+  height: 100%;
+  transition: transform 500ms ease;
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 300ms ease;
+}
+
+/* Nav Buttons (Prev / Next) */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(13, 13, 13, 0.45);
+  border: none;
+  color: var(--color-orange);
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  transition: background 160ms ease, transform 120ms ease, box-shadow 160ms ease, color 160ms ease;
+  z-index: 8;
+}
+.prev { left: 12px; }
+.next { right: 12px; }
+
+.navButton:hover {
+  background: rgba(13, 13, 13, 0.6);
+  transform: translateY(-50%) scale(1.02);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.6);
+}
+.navButton:active { transform: translateY(-50%) scale(0.98); }
+
+/* Dots */
+.dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 9;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: background 200ms ease, transform 150ms ease, box-shadow 150ms ease;
+  cursor: pointer;
+}
+.dot:hover { transform: scale(1.15); background: rgba(255,255,255,0.18); }
+.dotActive {
+  background: linear-gradient(90deg, var(--color-orange), var(--color-orange-light));
+  box-shadow: 0 6px 18px rgba(255,102,0,0.18), 0 1px 0 rgba(255,255,255,0.02) inset;
+  transform: scale(1.25);
+  border: none;
+}
+
+/* Overlay content */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 5vw;
+  background: linear-gradient(
+    90deg,
+    rgba(6,7,10,0.78) 0%,
+    rgba(6,7,10,0.55) 45%,
+    rgba(6,7,10,0.06) 75%
+  );
+  pointer-events: none;
+  z-index: 6;
+}
+
+.overlayContent {
+  max-width: 720px;
+  color: var(--color-white);
+  animation: fadeUp 600ms ease both;
+  pointer-events: auto; /* allow interaction for CTA inside */
+}
+
+/* Title */
+.title {
+  font-size: clamp(28px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.05;
+  margin: 0 0 16px 0;
+  letter-spacing: 0.5px;
+  color: var(--color-white);
+  text-shadow:
+    0 3px 24px rgba(0, 0, 0, 0.6),
+    0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* CTA Button — orange/black theme */
+.ctaBtn {
+  pointer-events: auto;
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--color-white);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(180deg, var(--color-orange), var(--color-orange-dark));
+  box-shadow: 0 6px 14px rgba(255, 102, 0, 0.35);
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
+  border: none;
+  cursor: pointer;
+}
+.ctaBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(255, 102, 0, 0.45);
+  background: linear-gradient(180deg, var(--color-orange-light), var(--color-orange));
+  color: var(--color-white);
+}
+.ctaBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 12px rgba(255, 102, 0, 0.35);
+}
+.ctaBtn:focus-visible {
+  outline: 2px solid var(--color-orange-light);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Small helper: subtle overlay accent behind CTA when placed on very bright images */
+.ctaBtn::after {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+.ctaBtn:hover::after { opacity: 0.06; }
+
+/* Fade up animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+  .navButton { width: 44px; height: 44px; }
+  .title { font-size: clamp(24px, 6.5vw, 44px); }
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    background: linear-gradient(
+      90deg,
+      rgba(6,7,10,0.85) 0%,
+      rgba(6,7,10,0.6) 50%,
+      rgba(6,7,10,0.12) 80%
+    );
+  }
+
+  .sliderRoot { aspect-ratio: 16 / 10; }
+  .dots { bottom: 8px; gap: 6px; }
+  .dot { width: 7px; height: 7px; }
+  .title { font-size: clamp(20px, 7.5vw, 36px); margin-bottom: 12px; }
+}
+
+@media (max-width: 420px) {
+  .navButton { width: 36px; height: 36px; left: 8px; right: 8px; }
+  .ctaBtn { padding: 8px 14px; font-size: 14px; }
+}

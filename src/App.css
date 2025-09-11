@@ -1,0 +1,14 @@
+/* Empty base for fresh start */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 24px 0;
+  background: transparent;
+}
+
+@media (max-width: 1023px) {
+  main {
+    padding: 0;
+    background: transparent;
+  }
+}
