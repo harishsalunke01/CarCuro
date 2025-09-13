@@ -4,7 +4,7 @@
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   overflow: hidden;
-  background: linear-gradient(180deg, var(--color-black, #0d0d0d), var(--color-dark-gray, #151515));
+  background: linear-gradient(180deg, var(--color-black), var(--color-dark-gray));
 }
 
 /* Prevent horizontal overflow on tablets and phones by disabling full-bleed */
@@ -51,7 +51,7 @@
 }
 
 .title {
-  color: var(--color-white, #ffffff);
+  color: var(--color-white);
   font-family: 'Eurostile', 'Rajdhani', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -72,9 +72,9 @@
 
 .statsRibbon {
   width: 100%;
-  background: linear-gradient(135deg, rgba(255, 102, 0, 0.12) 0%, rgba(255, 136, 0, 0.1) 40%, rgba(255, 102, 0, 0.12) 100%),
-    linear-gradient(180deg, rgba(13,13,13,1) 0%, rgba(26,26,26,1) 100%);
-  color: var(--color-white, #fff);
+  background: linear-gradient(135deg, rgba(0,102,255,0.12) 0%, rgba(51,153,255,0.1) 40%, rgba(0,102,255,0.12) 100%),
+              linear-gradient(180deg, rgba(13,13,13,1) 0%, rgba(26,26,26,1) 100%);
+  color: var(--color-white);
   padding: clamp(20px, 5vw, 48px) clamp(16px, 4vw, 32px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
@@ -91,8 +91,8 @@
 .statCard {
   position: relative;
   padding: clamp(16px, 3vw, 32px);
-  background: rgba(255, 115, 0, 0.06);
-  border: 1px solid rgba(255, 136, 0, 0.16);
+  background: rgba(0, 102, 255, 0.06);
+  border: 1px solid rgba(51, 153, 255, 0.16);
   border-radius: 14px;
   backdrop-filter: blur(4px);
 }
@@ -103,7 +103,7 @@
   inset: 0;
   border-radius: 14px;
   padding: 1px;
-  background: linear-gradient(180deg, rgba(255,136,0,0.35), rgba(255,136,0,0));
+  background: linear-gradient(180deg, rgba(51,153,255,0.35), rgba(51,153,255,0));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -115,7 +115,7 @@
   font-size: clamp(28px, 6vw, 56px);
   letter-spacing: 0.02em;
   text-shadow: 0 4px 14px rgba(0,0,0,0.25);
-  color: var(--color-orange, #ff6600);
+  color: var(--color-blue);
 }
 
 .statLabel {
@@ -148,7 +148,7 @@
   font-weight: 800;
   letter-spacing: 0.02em;
   margin: 0 0 6px 0;
-  color: var(--color-white, #ffffff);
+  color: var(--color-white);
 }
 
 .clientsSubtitle {
@@ -172,8 +172,8 @@
   content: '';
   position: absolute;
   inset: -20%;
-  background: radial-gradient(60% 40% at 50% 10%, rgba(255, 102, 0, 0.18), rgba(255, 102, 0, 0) 60%),
-              radial-gradient(40% 35% at 90% 90%, rgba(255, 136, 0, 0.18), rgba(255, 136, 0, 0) 60%);
+  background: radial-gradient(60% 40% at 50% 10%, rgba(0,102,255,0.18), rgba(0,102,255,0) 60%),
+              radial-gradient(40% 35% at 90% 90%, rgba(51,153,255,0.18), rgba(51,153,255,0) 60%);
   filter: blur(30px);
 }
 
@@ -207,7 +207,7 @@
   gap: 6px;
   color: #0d0d0d;
   background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(255,136,0,0.3);
+  border: 1px solid rgba(51,153,255,0.3);
   box-shadow: 0 10px 30px rgba(0,0,0,0.28);
   border-radius: 12px;
   padding: 10px 14px;
@@ -226,7 +226,7 @@
 .leaderRole {
   font-size: clamp(12px, 2vw, 14px);
   color: #333333;
-  border-top: 2px solid var(--color-orange, #ff6600);
+  border-top: 2px solid var(--color-blue);
   padding-top: 6px;
 }
 
@@ -270,7 +270,7 @@
   font-weight: 800;
   font-size: clamp(24px, 5vw, 44px);
   margin: 0 0 22px 0;
-  color: var(--color-white, #ffffff);
+  color: var(--color-white);
 }
 
 .studiosGrid {
@@ -289,7 +289,7 @@
 
 .studioCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(255,102,0,0.18);
+  box-shadow: 0 14px 30px rgba(0,102,255,0.18);
 }
 
 .studioImageContainer {
@@ -322,7 +322,6 @@
   font-weight: 500;
 }
 
-
 @media (max-width: 1024px) {
   .studiosGrid { grid-template-columns: 1fr 1fr; }
 }
@@ -331,6 +330,7 @@
   .studiosGrid { grid-template-columns: 1fr; }
   .studioImage { height: 180px; }
 }
+
 /* Small mobile optimizations */
 @media (max-width: 600px) {
   .banner {
@@ -384,5 +384,3 @@
     font-size: 14px;
   }
 }
-
-

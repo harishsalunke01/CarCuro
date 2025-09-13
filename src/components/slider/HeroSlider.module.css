@@ -1,13 +1,3 @@
-:root {
-  --color-black: #0d0d0d;
-  --color-dark-gray: #0b0f1d;
-  --color-white: #f0f0f0;
-  --color-orange: #ff6600;
-  --color-orange-light: #ff8800;
-  --color-orange-dark: #cc5200;
-  --muted-overlay: rgba(0,0,0,0.45);
-}
-
 /* Slider Root */
 .sliderRoot {
   position: relative;
@@ -48,7 +38,7 @@
   transform: translateY(-50%);
   background: rgba(13, 13, 13, 0.45);
   border: none;
-  color: var(--color-orange);
+  color: var(--color-blue);
   width: 40px;
   height: 40px;
   border-radius: 999px;
@@ -91,8 +81,8 @@
 }
 .dot:hover { transform: scale(1.15); background: rgba(255,255,255,0.18); }
 .dotActive {
-  background: linear-gradient(90deg, var(--color-orange), var(--color-orange-light));
-  box-shadow: 0 6px 18px rgba(255,102,0,0.18), 0 1px 0 rgba(255,255,255,0.02) inset;
+  background: linear-gradient(90deg, var(--color-blue), var(--color-blue-light));
+  box-shadow: 0 6px 18px rgba(0,123,255,0.18), 0 1px 0 rgba(255,255,255,0.02) inset;
   transform: scale(1.25);
   border: none;
 }
@@ -118,7 +108,7 @@
   max-width: 720px;
   color: var(--color-white);
   animation: fadeUp 600ms ease both;
-  pointer-events: auto; /* allow interaction for CTA inside */
+  pointer-events: auto;
 }
 
 /* Title */
@@ -134,7 +124,7 @@
     0 1px 6px rgba(0, 0, 0, 0.6);
 }
 
-/* CTA Button — orange/black theme */
+/* CTA Button — blue/black theme */
 .ctaBtn {
   pointer-events: auto;
   display: inline-block;
@@ -145,29 +135,28 @@
   font-weight: 700;
   letter-spacing: 0.2px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
-  background: linear-gradient(180deg, var(--color-orange), var(--color-orange-dark));
-  box-shadow: 0 6px 14px rgba(255, 102, 0, 0.35);
+  background: linear-gradient(180deg, var(--color-blue), var(--color-blue-dark));
+  box-shadow: 0 6px 14px rgba(0, 123, 255, 0.35);
   transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
   border: none;
   cursor: pointer;
 }
 .ctaBtn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 18px rgba(255, 102, 0, 0.45);
-  background: linear-gradient(180deg, var(--color-orange-light), var(--color-orange));
+  box-shadow: 0 10px 18px rgba(0, 123, 255, 0.45);
+  background: linear-gradient(180deg, var(--color-blue-light), var(--color-blue));
   color: var(--color-white);
 }
 .ctaBtn:active {
   transform: translateY(0);
-  box-shadow: 0 6px 12px rgba(255, 102, 0, 0.35);
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.35);
 }
 .ctaBtn:focus-visible {
-  outline: 2px solid var(--color-orange-light);
+  outline: 2px solid var(--color-blue-light);
   outline-offset: 2px;
   border-radius: 6px;
 }
 
-/* Small helper: subtle overlay accent behind CTA when placed on very bright images */
 .ctaBtn::after {
   content: '';
   display: block;
