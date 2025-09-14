@@ -112,9 +112,9 @@
 }
 
 .contactInfoItem {
-  background: rgba(255, 115, 0, 0.06);
+  background: rgba(0, 123, 255, 0.06);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 136, 0, 0.2);
+  border: 1px solid rgba(0, 123, 255, 0.2);
   border-radius: 16px;
   padding: 1.5rem;
   text-align: center;
@@ -123,8 +123,8 @@
 
 .contactInfoItem:hover {
   transform: translateY(-4px);
-  background: rgba(255, 136, 0, 0.12);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  background: rgba(0, 123, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.2);
 }
 
 .contactInfoTitle {
@@ -235,7 +235,7 @@
 
 /* Form Section */
 .formSection {
-  background: linear-gradient(135deg, rgba(255, 115, 0, 0.08) 0%, rgba(255, 136, 0, 0.06) 100%),
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.08) 0%, rgba(0, 123, 255, 0.06) 100%),
     linear-gradient(180deg, #0f0f0f, #141414);
   padding: 4rem 0;
   min-height: 100vh;
@@ -257,8 +257,8 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 80%, rgba(255, 102, 0, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 136, 0, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 80%, rgba(0, 123, 255, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 123, 255, 0.1) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -299,7 +299,7 @@
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-orange, #ff6600), var(--color-orange-light, #ff8800));
+  background: linear-gradient(90deg, var(--color-blue, #007bff), var(--color-blue-light, #3399ff));
   border-radius: 4px;
   transition: width 0.5s ease;
   position: relative;
@@ -364,9 +364,9 @@
 }
 
 .step.active .stepNumber {
-  background: linear-gradient(135deg, var(--color-orange, #ff6600), var(--color-orange-light, #ff8800));
+  background: linear-gradient(135deg, var(--color-blue, #007bff), var(--color-blue-light, #3399ff));
   color: white;
-  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.35);
 }
 
 .stepLabel {
@@ -377,7 +377,7 @@
 }
 
 .step.active .stepLabel {
-  color: var(--color-orange-light, #ff8800);
+  color: var(--color-blue-light, #3399ff);
 }
 
 .contactForm {
@@ -385,7 +385,7 @@
   border-radius: 12px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
   padding: 2rem;
-  border: 1px solid rgba(255,136,0,0.18);
+  border: 1px solid rgba(0, 123, 255, 0.18);
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.6s ease;
@@ -408,8 +408,8 @@
   border-radius: 20px;
   box-shadow: 
     0 20px 40px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(255, 136, 0, 0.25);
-  border: 1px solid rgba(255, 136, 0, 0.25);
+    0 0 0 1px rgba(0, 123, 255, 0.25);
+  border: 1px solid rgba(0, 123, 255, 0.25);
   animation: successSlideIn 0.6s ease;
 }
 
@@ -563,7 +563,7 @@
 /* Send Button */
 .sendButton {
   width: 100%;
-  background: linear-gradient(180deg, var(--color-orange, #ff6600), var(--color-orange-dark, #cc5200));
+  background: linear-gradient(180deg, var(--color-blue, #007bff), var(--color-blue-dark, #0056b3));
   color: #ffffff;
   border: none;
   padding: 0.875rem 2rem;
@@ -575,19 +575,19 @@
   text-transform: none;
   letter-spacing: 0.2px;
   margin-top: 1rem;
-  box-shadow: 0 6px 14px rgba(255, 102, 0, 0.35);
+  box-shadow: 0 6px 14px rgba(0, 123, 255, 0.35);
   text-shadow: 0 1px 1px rgba(0,0,0,0.35);
 }
 
 .sendButton:hover {
-  background: linear-gradient(180deg, var(--color-orange-light, #ff8800), var(--color-orange, #ff6600));
+  background: linear-gradient(180deg, var(--color-blue-light, #3399ff), var(--color-blue, #007bff));
   transform: translateY(-1px);
-  box-shadow: 0 10px 18px rgba(255, 102, 0, 0.45);
+  box-shadow: 0 10px 18px rgba(0, 123, 255, 0.45);
 }
 
 .sendButton:active {
   transform: translateY(0);
-  box-shadow: 0 6px 12px rgba(255, 102, 0, 0.35);
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.35);
 }
 
 .sendButton.submitting {
@@ -1166,5 +1166,174 @@
   .errorMessage {
     font-size: 11px;
     bottom: -16px;
+  }
+}
+
+/* === Modern Scroll Animations === */
+.animateOnScroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Fallback: Show elements after 3 seconds if animations don't work */
+.animateOnScroll:not(.visible) {
+  animation: fadeInFallback 0.5s ease 3s forwards;
+}
+
+@keyframes fadeInFallback {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animateOnScroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fadeInUp {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fadeInUp:not(.visible) {
+  animation: fadeInUpFallback 0.5s ease 3.2s forwards;
+}
+
+@keyframes fadeInUpFallback {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeInUp.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scaleIn {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scaleIn:not(.visible) {
+  animation: scaleInFallback 0.5s ease 3.4s forwards;
+}
+
+@keyframes scaleInFallback {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scaleIn.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slideInLeft {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slideInLeft:not(.visible) {
+  animation: slideInLeftFallback 0.5s ease 3.6s forwards;
+}
+
+@keyframes slideInLeftFallback {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slideInLeft.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slideInRight {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slideInRight:not(.visible) {
+  animation: slideInRightFallback 0.5s ease 3.8s forwards;
+}
+
+@keyframes slideInRightFallback {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slideInRight.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Staggered animations */
+.staggerItem {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.staggerItem:not(.visible) {
+  animation: staggerItemFallback 0.5s ease 4s forwards;
+}
+
+@keyframes staggerItemFallback {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.staggerItem.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.staggerItem:nth-child(1) { transition-delay: 0.1s; }
+.staggerItem:nth-child(2) { transition-delay: 0.2s; }
+.staggerItem:nth-child(3) { transition-delay: 0.3s; }
+.staggerItem:nth-child(4) { transition-delay: 0.4s; }
+.staggerItem:nth-child(5) { transition-delay: 0.5s; }
+.staggerItem:nth-child(6) { transition-delay: 0.6s; }
+
+/* Enhanced hover effects */
+.animateOnScroll:hover {
+  transform: translateY(-5px);
+}
+
+.scaleIn:hover {
+  transform: scale(1.02);
+}
+
+.staggerItem:hover {
+  transform: translateY(-3px);
+}
+
+/* Ensure elements are visible on mobile and smaller screens */
+@media (max-width: 768px) {
+  .animateOnScroll,
+  .fadeInUp,
+  .scaleIn,
+  .slideInLeft,
+  .slideInRight,
+  .staggerItem {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

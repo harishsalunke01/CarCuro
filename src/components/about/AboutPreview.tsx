@@ -1,37 +1,34 @@
 import { Link } from 'react-router-dom'
 import styles from './AboutPreview.module.css'
-import washing1 from '../../assets/Washing 1.avif'
-import washing2 from '../../assets/Washing 2.avif'
-import washing3 from '../../assets/Washing 3.avif'
+import studio2 from '../../assets/Studio 2.avif'
+import studio3 from '../../assets/Studio 3.avif'
 
 function AboutPreview() {
   return (
-    <section className={styles.root}>
-      <div className={styles.imageWrap}>
-        <div className={styles.collage}>
-          <div className={styles.slice}>
-            <img src={washing1} alt="Exterior wash" className={styles.image} />
+    <section className={styles.sectionWrapper}>
+      <div className={styles.root}>
+        {/* The background is now handled by CSS on the .sectionWrapper element */}
+        <div className={styles.foreground}>
+          <div className={styles.collage}>
+            <div className={`${styles.slice} ${styles.sliceOne}`}>
+              <img src={studio2} alt="Flawless finish on a car's paintwork" className={styles.image} />
+            </div>
+            <div className={`${styles.slice} ${styles.sliceTwo}`}>
+              <img src={studio3} alt="Intricate details of a luxury car's headlight" className={styles.image} />
+            </div>
           </div>
-          <div className={styles.slice}>
-            <img src={washing2} alt="Interior cleaning" className={styles.image} />
-          </div>
-          <div className={styles.slice}>
-            <img src={washing3} alt="Detail finish" className={styles.image} />
+
+          <div className={styles.content}>
+            <h2 className={styles.title}>The Pursuit of Perfection</h2>
+            <p className={styles.text}>
+              At CarCuro, we see vehicle detailing not as a task, but as an art form. Our passion is matched only by our precision, transforming every car into a statement of excellence and beauty.
+            </p>
+            <Link to="/about" className={styles.cta}>Discover Our Craft</Link>
           </div>
         </div>
-      </div>
-      <div>
-        <h2 className={styles.title}>About</h2>
-        <p className={styles.text}>
-          At CarCuro, we are more than just car enthusiasts; we are artisans dedicated to perfecting the art of
-          vehicle detailing. With a passion for precision and a commitment to excellence, we transform every vehicle
-          into a masterpiece. Experience unparalleled craftsmanship and unveil a new standard of automotive beauty with us.
-        </p>
-        <Link to="/about" className={styles.cta}>Know More</Link>
       </div>
     </section>
   )
 }
 
 export default AboutPreview
-

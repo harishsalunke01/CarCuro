@@ -1,7 +1,7 @@
 import styles from './Home.module.css'
 import HeroSlider from '../components/slider/HeroSlider'
 import studio1 from '../assets/Studio 1.avif'
-import studio5 from '../assets/Studio 5.webp'
+import studio2 from '../assets/Studio 2.avif'
 import studio4 from '../assets/Studio 4.avif'
 import AboutPreview from '../components/about/AboutPreview'
 import ServicesGrid from '../components/services/ServicesGrid'
@@ -39,8 +39,8 @@ function Home() {
               ctaLink: '/#services'
             },
             { 
-              src: studio5, 
-              alt: 'Car with a gleaming ceramic coating',
+              src: studio2, 
+              alt: 'Side profile of a polished car',
               title: 'Ceramic Coating',
               subtitle: 'Experience the ultimate in paint protection with our professional ceramic coating services.',
               ctaText: 'Learn More',
@@ -66,8 +66,8 @@ function Home() {
         <section className={styles.contactSection}>
           <div className={styles.contactInner}>
             <div>
-              <h3 className={styles.contactTitle}>Reach out to us</h3>
-              <p className={styles.contactSubtitle}>We are here for you. Our team is ready to hear from you.</p>
+              <h3 className={styles.contactTitle}>Reach Out to Us</h3>
+              <p className={styles.contactSubtitle}>We're just a message away! Whether you have questions, need support, or want expert advice, the CarCuro team is ready to help. Friendly, responsive, and always here for you—because your satisfaction drives us. 📞💬</p>
               <div className={styles.contactActions}>
                 <Link to="/contact" className={styles.contactButton}>Contact Us</Link>
               </div>
@@ -83,4 +83,3 @@ function Home() {
 }
 
 export default Home
-

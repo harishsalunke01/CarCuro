@@ -27,6 +27,63 @@ function Contact() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Scroll-triggered animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+          }
+        })
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    )
+
+    // Wait for DOM to be ready, then observe elements
+    const timer = setTimeout(() => {
+      const animatedElements = document.querySelectorAll(`
+        .animateOnScroll,
+        .fadeInUp,
+        .scaleIn,
+        .slideInLeft,
+        .slideInRight,
+        .staggerItem
+      `)
+      
+      animatedElements.forEach((el) => {
+        observer.observe(el)
+      })
+    }, 100)
+
+    // Fallback: Make all elements visible after 2 seconds if animations don't work
+    const fallbackTimer = setTimeout(() => {
+      const allAnimatedElements = document.querySelectorAll(`
+        .animateOnScroll,
+        .fadeInUp,
+        .scaleIn,
+        .slideInLeft,
+        .slideInRight,
+        .staggerItem
+      `)
+      
+      allAnimatedElements.forEach((el) => {
+        if (!el.classList.contains('visible')) {
+          el.classList.add('visible')
+        }
+      })
+    }, 2000)
+
+    return () => {
+      clearTimeout(timer)
+      clearTimeout(fallbackTimer)
+      observer.disconnect()
+    }
+  }, [])
+
   // Calculate form progress
   useEffect(() => {
     const totalFields = 5 // name, email, phone, service, comment
@@ -137,27 +194,27 @@ function Contact() {
       >
         <div className={styles.overlay} />
         <div className={styles.contactContent}>
-          <h1 className={styles.contactTitle}>CONTACT INFORMATION</h1>
-          <p className={styles.contactSubtitle}>
-            Connect with us for personalized automotive care. Your journey to unparalleled vehicle elegance begins here. Reach out today for excellence.
+          <h1 className={`${styles.contactTitle} ${styles.fadeInUp}`}>Reach Out To Us</h1>
+          <p className={`${styles.contactSubtitle} ${styles.animateOnScroll}`}>
+            We're just a message away! Whether you have questions, need support, or want expert advice, the CarCuro team is ready to help. Friendly, responsive, and always here for you—because your satisfaction drives us. 📞💬
           </p>
           
-          <div className={styles.contactActions}>
+          <div className={`${styles.contactActions} ${styles.scaleIn}`}>
             <a href="tel:+919876543210" className={styles.contactButton}>
               Call Now
             </a>
           </div>
           
           <div className={styles.contactInfo}>
-            <div className={styles.contactInfoItem}>
+            <div className={`${styles.contactInfoItem} ${styles.staggerItem}`}>
               <h3 className={styles.contactInfoTitle}>Phone</h3>
               <p className={styles.contactInfoText}>+91 98765 43210</p>
             </div>
-            <div className={styles.contactInfoItem}>
+            <div className={`${styles.contactInfoItem} ${styles.staggerItem}`}>
               <h3 className={styles.contactInfoTitle}>Email</h3>
               <p className={styles.contactInfoText}>info@carcuro.com</p>
             </div>
-            <div className={styles.contactInfoItem}>
+            <div className={`${styles.contactInfoItem} ${styles.staggerItem}`}>
               <h3 className={styles.contactInfoTitle}>Address</h3>
               <p className={styles.contactInfoText}>Pune, Maharashtra, India</p>
             </div>
@@ -167,10 +224,10 @@ function Contact() {
 
       <section className={styles.formSection}>
         <div className={styles.formContainer}>
-          <h2 className={styles.formTitle}>Reach Out To Us</h2>
+          <h2 className={`${styles.formTitle} ${styles.fadeInUp}`}>Reach Out To Us</h2>
           
           {/* Progress Indicator */}
-          <div className={styles.progressContainer}>
+          <div className={`${styles.progressContainer} ${styles.animateOnScroll}`}>
             <div className={styles.progressBar}>
               <div 
                 className={styles.progressFill} 
@@ -181,7 +238,7 @@ function Contact() {
           </div>
 
           {/* Step Indicator */}
-          <div className={styles.stepIndicator}>
+          <div className={`${styles.stepIndicator} ${styles.scaleIn}`}>
             <div className={`${styles.step} ${currentStep >= 1 ? styles.active : ''}`}>
               <span className={styles.stepNumber}>1</span>
               <span className={styles.stepLabel}>Personal Info</span>
@@ -208,8 +265,8 @@ function Contact() {
               className={`${styles.contactForm} ${isFormVisible ? styles.visible : ''}`} 
               onSubmit={handleSubmit}
             >
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
+              <div className={`${styles.formRow} ${styles.slideInLeft}`}>
+                <div className={`${styles.formGroup} ${styles.staggerItem}`}>
                   <label className={styles.fieldLabel}>
                     Your Name <span className={styles.required}>*</span>
                   </label>
@@ -224,7 +281,7 @@ function Contact() {
                   />
                   {fieldErrors.name && <span className={styles.errorMessage}>{fieldErrors.name}</span>}
                 </div>
-                <div className={styles.formGroup}>
+                <div className={`${styles.formGroup} ${styles.staggerItem}`}>
                   <label className={styles.fieldLabel}>
                     Your Email <span className={styles.required}>*</span>
                   </label>
@@ -241,8 +298,8 @@ function Contact() {
                 </div>
               </div>
 
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
+              <div className={`${styles.formRow} ${styles.slideInRight}`}>
+                <div className={`${styles.formGroup} ${styles.staggerItem}`}>
                   <label className={styles.fieldLabel}>
                     Phone <span className={styles.required}>*</span>
                   </label>
@@ -258,7 +315,7 @@ function Contact() {
                   />
                   {fieldErrors.phone && <span className={styles.errorMessage}>{fieldErrors.phone}</span>}
                 </div>
-                <div className={styles.formGroup}>
+                <div className={`${styles.formGroup} ${styles.staggerItem}`}>
                   <label className={styles.fieldLabel}>
                     Service <span className={styles.required}>*</span>
                   </label>
@@ -282,7 +339,7 @@ function Contact() {
                 </div>
               </div>
 
-              <div className={styles.formGroup}>
+              <div className={`${styles.formGroup} ${styles.fadeInUp}`}>
                 <label className={styles.fieldLabel}>
                   Your Message <span className={styles.required}>*</span>
                 </label>
@@ -298,7 +355,7 @@ function Contact() {
                 {fieldErrors.comment && <span className={styles.errorMessage}>{fieldErrors.comment}</span>}
               </div>
 
-              <div className={styles.consentSection}>
+              <div className={`${styles.consentSection} ${styles.scaleIn}`}>
                 <label className={styles.consentLabel}>
                   <input
                     type="checkbox"
@@ -316,7 +373,7 @@ function Contact() {
 
               <button 
                 type="submit" 
-                className={`${styles.sendButton} ${isSubmitting ? styles.submitting : ''}`}
+                className={`${styles.sendButton} ${styles.animateOnScroll} ${isSubmitting ? styles.submitting : ''}`}
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
