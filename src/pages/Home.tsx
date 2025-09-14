@@ -1,8 +1,8 @@
 import styles from './Home.module.css'
 import HeroSlider from '../components/slider/HeroSlider'
-import washing1 from '../assets/Washing 1.avif'
-import washing2 from '../assets/Washing 2.avif'
-import washing3 from '../assets/Washing 3.avif'
+import studio1 from '../assets/Studio 1.avif'
+import studio5 from '../assets/Studio 5.webp'
+import studio4 from '../assets/Studio 4.avif'
 import AboutPreview from '../components/about/AboutPreview'
 import ServicesGrid from '../components/services/ServicesGrid'
 import { useEffect } from 'react'
@@ -30,11 +30,32 @@ function Home() {
       <div className={styles.fullBleed}>
         <HeroSlider
           slides={[
-            { src: washing1, alt: 'Car exterior washing' },
-            { src: washing2, alt: 'Car cleaning and detailing' },
-            { src: washing3, alt: 'Car rinse and finish' }
+            { 
+              src: studio1, 
+              alt: 'Car in a professional studio',
+              title: 'Paint Protection Films',
+              subtitle: 'Shield your vehicle with our premium paint protection films. Advanced technology meets superior craftsmanship.',
+              ctaText: 'Explore PPF',
+              ctaLink: '/#services'
+            },
+            { 
+              src: studio5, 
+              alt: 'Car with a gleaming ceramic coating',
+              title: 'Ceramic Coating',
+              subtitle: 'Experience the ultimate in paint protection with our professional ceramic coating services.',
+              ctaText: 'Learn More',
+              ctaLink: '/#services'
+            },
+            { 
+              src: studio4, 
+              alt: 'Car with a high-gloss graphene coating finish',
+              title: 'Graphene Coating',
+              subtitle: 'Next-generation protection with graphene technology. Unmatched durability and hydrophobic properties.',
+              ctaText: 'Discover',
+              ctaLink: '/#services'
+            }
           ]}
-          intervalMs={2400}
+          intervalMs={5000}
         />
       </div>
       <AboutPreview />

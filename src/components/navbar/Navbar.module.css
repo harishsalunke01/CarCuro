@@ -1,15 +1,19 @@
 :root {
-  --nav-height: 64px;
+  --nav-height: 70px;
   --color-black: #0d0d0d;
-  --color-white: #f0f0f0;
+  --color-white: #ffffff;
   --color-blue: #007bff;
   --color-blue-light: #3399ff;
   --color-blue-dark: #0056b3;
-  --color-border: rgba(0, 123, 255, 0.2);
+  --color-gray: #a0a0a0;
+  --color-border: rgba(0, 123, 255, 0.18);
   --color-hover: #ffffff;
-  --transition-fast: 150ms ease;
-  --transition-mid: 200ms ease;
+  --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-mid: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
   --max-width: 1200px;
+  --shadow-blue: 0 0 20px rgba(0, 123, 255, 0.3);
+  --shadow-blue-strong: 0 0 30px rgba(0, 123, 255, 0.5);
 }
 
 /* Navigation Container */
@@ -21,12 +25,11 @@
   z-index: 1000;
   width: 100%;
   min-height: var(--nav-height);
-  background: rgba(13, 13, 13, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
-  transition: background var(--transition-fast), box-shadow var(--transition-fast);
+  background: rgba(13, 13, 13, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-mid);
 }
 
 /* Inner Content */
@@ -38,33 +41,36 @@
   align-items: center;
   justify-content: space-between;
   height: var(--nav-height);
+  position: relative;
+  z-index: 2;
 }
 
 /* Brand Area */
 .brandArea {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .logo {
-  max-height: calc(var(--nav-height) - 20px);
-  object-fit: contain;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-white);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color var(--transition-fast);
+  font-family: 'Inter', 'Arial', sans-serif;
 }
 
-.brand {
-  color: var(--color-blue);
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
+.logo:hover {
+  color: var(--color-blue-light);
 }
 
 /* Navigation Links */
 .links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
   flex-wrap: nowrap;
 }
 
@@ -72,133 +78,261 @@
   position: relative;
   color: var(--color-white);
   text-decoration: none;
-  font-weight: 600;
-  padding: 6px 2px;
-  transition: color var(--transition-fast);
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 0;
+  transition: all var(--transition-fast);
+  font-family: 'Inter', 'Arial', sans-serif;
+  letter-spacing: 0.3px;
 }
 
 .link:hover {
   color: var(--color-blue-light);
 }
 
-.link::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  height: 2px;
-  width: 100%;
-  background: linear-gradient(90deg, var(--color-blue), var(--color-blue-light));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--transition-mid);
-}
-
-.link:hover::after,
-.active::after {
-  transform: scaleX(1);
-}
-
 .active {
+  color: var(--color-blue-light);
+  font-weight: 600;
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownToggle {
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: 'Inter', 'Arial', sans-serif;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dropdownToggle:hover {
   color: var(--color-blue-light);
 }
 
-/* Call to Action */
-.cta {
+.chevron {
+  font-size: 12px;
+  transition: transform var(--transition-fast);
+}
+
+.dropdownToggle:hover .chevron {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(13, 13, 13, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 0;
+  min-width: 200px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  animation: dropdownFadeIn 200ms ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownItem {
+  display: block;
+  padding: 12px 20px;
   color: var(--color-white);
   text-decoration: none;
-  padding: 10px 18px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--color-blue), var(--color-blue-dark));
-  box-shadow: 0 6px 14px rgba(0, 123, 255, 0.35);
+  font-size: 14px;
+  font-weight: 400;
   transition: all var(--transition-fast);
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+  font-family: 'Inter', 'Arial', sans-serif;
 }
 
-.cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 18px rgba(0, 123, 255, 0.5);
-  background: linear-gradient(180deg, var(--color-blue-light), var(--color-blue));
+.dropdownItem:hover {
+  background: rgba(0, 123, 255, 0.1);
+  color: var(--color-blue-light);
+  padding-left: 24px;
+}
+
+/* Call Button */
+.callButton {
+  background: var(--color-black);
+  border: 2px solid var(--color-white);
   color: var(--color-white);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all var(--transition-mid);
+  font-family: 'Inter', 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
 }
 
-.cta:active {
+.callButton:hover {
+  background: var(--color-white);
+  color: var(--color-black);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.callButton:active {
   transform: translateY(0);
-  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.35);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
-/* Focus Styles */
-.link:focus-visible,
-.cta:focus-visible {
-  outline: 2px solid var(--color-blue-light);
-  outline-offset: 2px;
-  border-radius: 6px;
+.phoneIcon {
+  font-size: 16px;
 }
 
 /* Hamburger Button */
 .menuButton {
   display: none;
-  background: transparent;
+  background: none;
   border: none;
-  padding: 6px;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
+  padding: 8px;
+  transition: all var(--transition-mid);
 }
 
 .menuIcon {
   display: inline-block;
-  width: 22px;
-  height: 2px;
-  background: var(--color-blue);
+  width: 24px;
+  height: 3px;
+  background: var(--color-white);
   position: relative;
-  border-radius: 2px;
-  transition: background var(--transition-fast);
+  border-radius: 3px;
+  transition: all var(--transition-mid);
 }
+
 .menuIcon::before,
 .menuIcon::after {
   content: '';
   position: absolute;
-  width: 22px;
-  height: 2px;
-  background: var(--color-blue);
-  border-radius: 2px;
+  width: 24px;
+  height: 3px;
+  background: var(--color-white);
+  border-radius: 3px;
+  transition: all var(--transition-mid);
 }
-.menuIcon::before { top: -7px; }
-.menuIcon::after { top: 7px; }
+
+.menuIcon::before { 
+  top: -8px; 
+}
+
+.menuIcon::after { 
+  top: 8px; 
+}
+
+.menuButton:hover .menuIcon {
+  background: var(--color-blue-light);
+}
+
+.menuButton:hover .menuIcon::before,
+.menuButton:hover .menuIcon::after {
+  background: var(--color-blue-light);
+}
 
 /* Mobile Panel */
 .mobilePanel {
   display: none;
   overflow: hidden;
-  transition: max-height 240ms ease;
+  transition: all var(--transition-mid);
+  background: rgba(13, 13, 13, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
 }
 
 .mobileLink,
-.mobileCta {
+.mobileCallButton {
   display: block;
-  padding: 14px 24px;
+  padding: 16px 24px;
   text-decoration: none;
+  position: relative;
+  transition: all var(--transition-mid);
+  color: var(--color-white);
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
 }
 
 .mobileLink {
-  color: var(--color-white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileLink:hover,
+.mobileCallButton:hover {
+  background: rgba(0, 123, 255, 0.1);
+  color: var(--color-blue-light);
+  padding-left: 32px;
 }
 
 .mobileActive {
   color: var(--color-blue-light);
+  background: rgba(0, 123, 255, 0.1);
+  padding-left: 32px;
 }
 
-.mobileCta {
-  color: #fff;
-  margin: 8px 16px 16px;
+.mobileCallButton {
+  background: var(--color-black);
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
+  margin: 16px 24px 20px;
   text-align: center;
-  border-radius: 12px;
-  background: linear-gradient(180deg, var(--color-blue), var(--color-blue-dark));
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mobileCallButton:hover {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+/* Focus Styles */
+.link:focus-visible,
+.dropdownToggle:focus-visible,
+.callButton:focus-visible {
+  outline: 2px solid var(--color-blue-light);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* Breakpoints */
@@ -215,10 +349,6 @@
 
   .mobilePanel {
     display: block;
-    background: rgba(13, 13, 13, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--color-border);
     max-height: 0;
   }
 
@@ -233,30 +363,32 @@
   }
 
   .links {
-    gap: 18px;
+    gap: 20px;
   }
 }
 
 @media (max-width: 600px) {
-  .brand {
-    font-size: 18px;
-  }
-
   .logo {
-    max-height: calc(var(--nav-height) - 24px);
+    font-size: 20px;
   }
 
   .links {
-    gap: 14px;
+    gap: 16px;
   }
 
-  .cta {
-    padding: 8px 14px;
+  .callButton {
+    padding: 10px 16px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 380px) {
-  .brand {
-    display: none;
+  .logo {
+    font-size: 18px;
+  }
+  
+  .callButton {
+    padding: 8px 12px;
+    font-size: 11px;
   }
 }

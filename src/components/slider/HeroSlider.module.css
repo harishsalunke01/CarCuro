@@ -13,7 +13,7 @@
 .track {
   display: flex;
   height: 100%;
-  transition: transform 500ms ease;
+  transition: transform 600ms cubic-bezier(0.87, 0, 0.13, 1); /* Smoother ease */
   will-change: transform;
 }
 
@@ -28,7 +28,20 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 300ms ease;
+}
+
+/* Ken Burns Effect for active slide image */
+.slideActive .image {
+  animation: kenBurns 8s ease-out forwards;
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07);
+  }
 }
 
 /* Nav Buttons (Prev / Next) */
@@ -45,8 +58,9 @@
   cursor: pointer;
   display: grid;
   place-items: center;
+  font-size: 24px; /* Larger icon */
   box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-  transition: background 160ms ease, transform 120ms ease, box-shadow 160ms ease, color 160ms ease;
+  transition: all 160ms ease;
   z-index: 8;
 }
 .prev { left: 12px; }
@@ -54,7 +68,7 @@
 
 .navButton:hover {
   background: rgba(13, 13, 13, 0.6);
-  transform: translateY(-50%) scale(1.02);
+  transform: translateY(-50%) scale(1.05);
   box-shadow: 0 10px 26px rgba(0,0,0,0.6);
 }
 .navButton:active { transform: translateY(-50%) scale(0.98); }
@@ -62,28 +76,31 @@
 /* Dots */
 .dots {
   position: absolute;
-  bottom: 12px;
+  bottom: 16px; /* More space */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  gap: 10px; /* More space */
   z-index: 9;
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 10px; /* Larger dots */
+  height: 10px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.06);
-  transition: background 200ms ease, transform 150ms ease, box-shadow 150ms ease;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 200ms ease;
   cursor: pointer;
 }
-.dot:hover { transform: scale(1.15); background: rgba(255,255,255,0.18); }
+.dot:hover {
+  transform: scale(1.15);
+  background: rgba(255,255,255,0.25);
+}
 .dotActive {
   background: linear-gradient(90deg, var(--color-blue), var(--color-blue-light));
   box-shadow: 0 6px 18px rgba(0,123,255,0.18), 0 1px 0 rgba(255,255,255,0.02) inset;
-  transform: scale(1.25);
+  transform: scale(1.3); /* More pronounced active dot */
   border: none;
 }
 
@@ -107,8 +124,33 @@
 .overlayContent {
   max-width: 720px;
   color: var(--color-white);
-  animation: fadeUp 600ms ease both;
   pointer-events: auto;
+}
+
+/* Title & CTA Button Animations */
+.title,
+.subtitle,
+.ctaBtn {
+  animation: slideInUp 800ms 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.subtitle {
+  animation-delay: 400ms;
+}
+
+.ctaBtn {
+  animation-delay: 600ms;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Title */
@@ -122,6 +164,15 @@
   text-shadow:
     0 3px 24px rgba(0, 0, 0, 0.6),
     0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: clamp(16px, 1.8vw, 20px);
+  margin: 0 0 24px 0;
+  max-width: 600px;
+  line-height: 1.5;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
 }
 
 /* CTA Button — blue/black theme */
@@ -157,25 +208,6 @@
   border-radius: 6px;
 }
 
-.ctaBtn::after {
-  content: '';
-  display: block;
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-  opacity: 0;
-  transition: opacity 160ms ease;
-}
-.ctaBtn:hover::after { opacity: 0.06; }
-
-/* Fade up animation */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 /* Responsive tweaks */
 @media (max-width: 1024px) {
   .navButton { width: 44px; height: 44px; }
@@ -196,6 +228,7 @@
   .dots { bottom: 8px; gap: 6px; }
   .dot { width: 7px; height: 7px; }
   .title { font-size: clamp(20px, 7.5vw, 36px); margin-bottom: 12px; }
+  .subtitle { font-size: 16px; margin-bottom: 16px; }
 }
 
 @media (max-width: 420px) {

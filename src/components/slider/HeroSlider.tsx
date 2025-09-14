@@ -5,6 +5,10 @@ import styles from './HeroSlider.module.css'
 type Slide = {
   src: string
   alt: string
+  title: string
+  subtitle: string
+  ctaText: string
+  ctaLink: string
 }
 
 type HeroSliderProps = {
@@ -28,11 +32,13 @@ function HeroSlider({ slides, intervalMs = 4000 }: HeroSliderProps) {
     setIndex((prev) => (prev + next + slides.length) % slides.length)
   }
 
+  const activeSlide = slides[index]
+
   return (
     <div className={styles.sliderRoot}>
       <div className={styles.track} style={{ transform: `translateX(-${index * 100}%)` }}>
         {slides.map((s, i) => (
-          <div className={styles.slide} key={i}>
+          <div className={`${styles.slide} ${i === index ? styles.slideActive : ''}`} key={i}>
             <img className={styles.image} src={s.src} alt={s.alt} />
           </div>
         ))}
@@ -42,9 +48,10 @@ function HeroSlider({ slides, intervalMs = 4000 }: HeroSliderProps) {
       <button className={`${styles.navButton} ${styles.next}`} onClick={() => go(1)} aria-label="Next slide">›</button>
 
       <div className={styles.overlay}>
-        <div className={styles.overlayContent}>
-          <h2 className={styles.title}>Unveil the beauty of your car</h2>
-          <Link to="/about" className={styles.ctaBtn}>Know More</Link>
+        <div className={styles.overlayContent} key={index}>
+          <h2 className={styles.title}>{activeSlide.title}</h2>
+          <p className={styles.subtitle}>{activeSlide.subtitle}</p>
+          <Link to={activeSlide.ctaLink} className={styles.ctaBtn}>{activeSlide.ctaText}</Link>
         </div>
       </div>
 
