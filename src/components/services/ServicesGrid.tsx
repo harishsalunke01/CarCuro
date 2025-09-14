@@ -8,7 +8,6 @@ import ceramicImg from '../../assets/Studio 2.avif'
 import ppfImg from '../../assets/Studio 4.avif'
 import grapheneImg from '../../assets/Studio 5.webp'
 import sunControlImg from '../../assets/About.jpg'
-import accessoriesImg from '../../assets/Client Img.png'
 
 
 type Service = {
